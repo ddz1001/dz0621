@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ToolType>
+    <TypeName>Chainsaw</TypeName>
+    <DailyCharge>1.49</DailyCharge>
+    <WeekdayCharge>true</WeekdayCharge>
+    <WeekendCharge>false</WeekendCharge>
+    <HolidayCharge>true</HolidayCharge>
+</ToolType>

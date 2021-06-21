@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="ToolType">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="TypeName" type="xs:string"/>
+                <xs:element name="DailyCharge">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:decimal">
+                            <xs:fractionDigits value="2"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="WeekdayCharge" type="xs:boolean"/>
+                <xs:element name="WeekendCharge" type="xs:boolean"/>
+                <xs:element name="HolidayCharge" type="xs:boolean"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
