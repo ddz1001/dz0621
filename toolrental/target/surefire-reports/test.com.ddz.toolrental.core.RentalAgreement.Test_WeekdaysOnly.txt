@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: test.com.ddz.toolrental.core.RentalAgreement.Test_WeekdaysOnly
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in test.com.ddz.toolrental.core.RentalAgreement.Test_WeekdaysOnly
