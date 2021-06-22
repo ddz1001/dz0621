@@ -15,7 +15,7 @@ Summary:
 Demoing this Project:
     This project includes a main method which demonstrates a basic use case.
     Data is printed to the console.
-
+    
     There are a number of unit tests which handle a variety of other use cases.
     Specifically, in test.com.ddz.toolrental.service.CheckoutService:
         Test_ChainsawWithDiscount()
@@ -28,3 +28,6 @@ Demoing this Project:
     These tests listed above demonstrate how data is manipulated, and what business
     rules are enforeced.
 
+Dependencies:
+    Core Java libraries
+    JUnit5 for unit testing
