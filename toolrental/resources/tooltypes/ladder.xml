@@ -3,6 +3,6 @@
     <TypeName>Ladder</TypeName>
     <DailyCharge>1.99</DailyCharge>
     <WeekdayCharge>true</WeekdayCharge>
-    <WeekendCharge>false</WeekendCharge>
-    <HolidayCharge>true</HolidayCharge>
+    <WeekendCharge>true</WeekendCharge>
+    <HolidayCharge>false</HolidayCharge>
 </ToolType>
