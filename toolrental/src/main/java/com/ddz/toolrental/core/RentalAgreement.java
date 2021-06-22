@@ -65,7 +65,7 @@ public class RentalAgreement {
 	
 	public String buildAgreementString() {
 		//Format the dates
-		String fmtString = "MM/dd/yyyy";
+		String fmtString = "MM/dd/yy";
 		
 		String checkout = this.checkDate.format(
 				DateTimeFormatter.ofPattern(fmtString));
@@ -78,7 +78,7 @@ public class RentalAgreement {
 		String dailyrental = nf.format(this.dailyCharge);
 		String prediscount = nf.format(this.preDiscount);
 		String dpercentage = "%" + this.discountPercent.multiply(
-				new BigDecimal("100.0"));
+				new BigDecimal("100.0")).setScale(0);
 		String damount = nf.format(this.discountAmount);
 		String total = nf.format(this.total);
 		

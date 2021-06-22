@@ -165,7 +165,7 @@ public class ToolRepositoryLoader {
 		
 		static final String CODE = "Code";
 		static final String BRAND = "Brand";
-		static final String TYPE = "Chainsaw";
+		static final String TYPE = "Type";
 		
 		public ToolHandler() {
 			charBuffer = new StringBuilder(256);
