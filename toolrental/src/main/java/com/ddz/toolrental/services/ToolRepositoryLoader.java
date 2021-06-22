@@ -24,6 +24,12 @@ import com.ddz.toolrental.core.ToolType;
 import com.ddz.toolrental.repositories.ToolRepository;
 import com.ddz.toolrental.repositories.ToolTypeRepository;
 
+/**
+ * Service for loading the ToolRepository and ToolTypeRepository
+ * The current implementation loads the Tool and ToolType data from xml files, which are validated against xsd schemas
+ * @author Dante Zitello
+ *
+ */
 public class ToolRepositoryLoader {
 	
 	private final ToolRepository toolRepo;
@@ -31,11 +37,15 @@ public class ToolRepositoryLoader {
 	
 	private static ToolRepositoryLoader loader;
 	
-	ToolRepositoryLoader() {
+	private ToolRepositoryLoader() {
 		toolRepo = ToolRepository.getRepository();
 		typeRepo = ToolTypeRepository.getRepository();
 	}
 	
+	/**
+	 * Get service singleton
+	 * @return ToolRepositoryLoader
+	 */
 	public static ToolRepositoryLoader getRepositoryLoader() {
 		if(loader == null) {
 			loader = new ToolRepositoryLoader();
@@ -44,7 +54,17 @@ public class ToolRepositoryLoader {
 		return loader;
 	}
 	
-	
+	/**
+	 * Load ToolType and Tool repositories with provided xml data.
+	 * The ToolTypeRepository is loaded first, then the ToolRepository is loaded.
+	 * 
+	 * @param toolTypeXsdPath  toolType xsd schema path
+	 * @param toolXsdPath  tool xsd schema path
+	 * @param toolTypeDirPath  directory holding ToolType xml files
+	 * @param toolDirPath  directory holding Tool xml files
+	 * @throws IOException if there are IO related problems
+	 * @throws RuntimeException if xsd file paths are not files, or tool/tooltype directory paths are not directories
+	 */
 	public void loadRepositories(String toolTypeXsdPath, String toolXsdPath, String toolTypeDirPath, String toolDirPath) throws IOException {
 		
 		//Get schema files
@@ -97,7 +117,13 @@ public class ToolRepositoryLoader {
 	}
 	
 
-	
+	/**
+	 * Validate an xml file against a schema
+	 * @param xsd
+	 * @param xml
+	 * @return
+	 * @throws IOException
+	 */
 	private boolean validateFile(File xsd, File xml) throws IOException {
         try {
             SchemaFactory factory = 
@@ -114,6 +140,15 @@ public class ToolRepositoryLoader {
         }
 	}
 	
+	/**
+	 * Parse a ToolType out of an xml file
+	 * @param xsd
+	 * @param typeXML
+	 * @return
+	 * @throws IOException if there were problems reading the file
+	 * @throws RuntimeException if file did not validate against schema
+ 	 * @throws RuntimeException if there were parsing errors
+	 */
 	public ToolType parseType(File xsd, File typeXML) throws IOException {
 		try {
 			SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -135,6 +170,15 @@ public class ToolRepositoryLoader {
 		}
 	}
 	
+	/**
+	 * Parse a Tool out of an xml file
+	 * @param xsd
+	 * @param toolXML
+	 * @return
+	 * @throws IOException if there were problems reading the file
+	 * @throws RuntimeException if file did not validate against schema
+	 * @throws RuntimeException if there were parsing errors
+	 */
 	public Tool parseTool(File xsd, File toolXML) throws IOException {
 		try {
 			SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -157,7 +201,11 @@ public class ToolRepositoryLoader {
 	}
 	
 	
-	
+	/**
+	 * SAX handler for Tool xml files
+	 * @author Dante Zitello
+	 *
+	 */
 	private class ToolHandler extends DefaultHandler {
 	    
 		StringBuilder charBuffer;
@@ -211,7 +259,11 @@ public class ToolRepositoryLoader {
 	    }
 	}
 	
-	
+	/**
+	 * SAX handler for ToolType xml files
+	 * @author Dante Zitello
+	 *
+	 */
 	private class ToolTypeHandler extends DefaultHandler {
 	    
 		StringBuilder charBuffer;

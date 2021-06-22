@@ -35,7 +35,7 @@ class Test_CheckoutService {
 	void Test_LadderWithDiscount() {
 		
 		RentalAgreement lag = svc.checkoutTool(
-				"LADW", 3, 10, LocalDate.parse("2020-07-02"));
+				"LADW", 10, LocalDate.parse("2020-07-02"), 3);
 		
 		assertEquals(3, lag.getRentalDays());
 		assertEquals(2, lag.getChargeDays()); //weekends, minus july4th
@@ -55,7 +55,7 @@ class Test_CheckoutService {
 	void Test_ChainsawWithDiscount() {
 		
 		RentalAgreement lag = svc.checkoutTool(
-				"CHNS", 5, 25, LocalDate.parse("2015-07-02"));
+				"CHNS", 25, LocalDate.parse("2015-07-02"), 5);
 		
 		assertEquals(5, lag.getRentalDays());
 		assertEquals(3, lag.getChargeDays()); 
@@ -74,7 +74,7 @@ class Test_CheckoutService {
 	void Test_JackhammerWithNoDiscount_LaborDay() {
 		
 		RentalAgreement lag = svc.checkoutTool(
-				"JAKD", 6, 0, LocalDate.parse("2015-09-03"));
+				"JAKD", 0, LocalDate.parse("2015-09-03"), 6);
 		
 		assertEquals(6, lag.getRentalDays());
 		assertEquals(3, lag.getChargeDays()); 
@@ -95,7 +95,7 @@ class Test_CheckoutService {
 	void Test_JackhammerWithNoDiscount_July4th() {
 		
 		RentalAgreement lag = svc.checkoutTool(
-				"JAKR", 9, 0, LocalDate.parse("2015-07-02"));
+				"JAKR", 0, LocalDate.parse("2015-07-02"), 9);
 		
 		assertEquals(9, lag.getRentalDays());
 		assertEquals(5, lag.getChargeDays()); 
@@ -114,7 +114,7 @@ class Test_CheckoutService {
 	void Test_JackhammerWithDiscount_July4th() {
 		
 		RentalAgreement lag = svc.checkoutTool(
-				"JAKR", 4, 50, LocalDate.parse("2020-07-02"));
+				"JAKR", 50, LocalDate.parse("2020-07-02"), 4);
 		
 		assertEquals(4, lag.getRentalDays());
 		assertEquals(1, lag.getChargeDays()); 
@@ -135,7 +135,7 @@ class Test_CheckoutService {
 		
 		assertThrows( RuntimeException.class, () -> {
 			RentalAgreement lag = svc.checkoutTool(
-					"JAKR", 5, 101, LocalDate.parse("2015-09-03"));
+					"JAKR", 101, LocalDate.parse("2015-09-03"), 5);
 		});
 	}
 	
@@ -149,32 +149,32 @@ class Test_CheckoutService {
 		
 		assertThrows( RuntimeException.class, () -> {
 			RentalAgreement lag = svc.checkoutTool(
-					"foo", 1, 0, LocalDate.parse("2015-09-03"));
+					"foo", 0, LocalDate.parse("2015-09-03"), 1);
 		});
 		
 		assertThrows( NullPointerException.class, () -> {
 			RentalAgreement lag = svc.checkoutTool(
-					null, 1, 0, LocalDate.parse("2015-09-03"));
+					null, 0, LocalDate.parse("2015-09-03"), 1);
 		});
 		
 		assertThrows( RuntimeException.class, () -> {
 			RentalAgreement lag = svc.checkoutTool(
-					"JAKD", 0, 0, LocalDate.parse("2015-09-03"));
+					"JAKD", 0, LocalDate.parse("2015-09-03"), 0);
 		});
 		
 		assertThrows( RuntimeException.class, () -> {
 			RentalAgreement lag = svc.checkoutTool(
-					"JAKD", 1, -1, LocalDate.parse("2015-09-03"));
+					"JAKD", -1, LocalDate.parse("2015-09-03"), 1);
 		});
 		
 		assertThrows( RuntimeException.class, () -> {
 			RentalAgreement lag = svc.checkoutTool(
-					"JAKD", 1, 101, LocalDate.parse("2015-09-03"));
+					"JAKD", 101, LocalDate.parse("2015-09-03"), 1);
 		});
 		
 		assertThrows( NullPointerException.class, () -> {
 			RentalAgreement lag = svc.checkoutTool(
-					"JAKD", 1, 10, null);
+					"JAKD", 10, null, 1);
 		});
 		
 	}

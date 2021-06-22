@@ -1,4 +1,4 @@
-package test.com.ddz.toolrental.core.RentalPriceCalculator;
+package test.com.ddz.toolrental.core.RentalPriceInfo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,13 +6,13 @@ import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
 
-import com.ddz.toolrental.core.RentalPriceCalculator;
+import com.ddz.toolrental.core.RentalPriceInfo;
 
-class Test_RentalCalculator {
+class Test_RentalInfo {
 
 	@Test
 	void Test_NoDiscount_OneDay() {
-		RentalPriceCalculator rp = RentalPriceCalculator.calculate(
+		RentalPriceInfo rp = RentalPriceInfo.calculate(
 				new BigDecimal("5.00"), new BigDecimal(0), 1);
 		
 		//The way assertEquals handles BigDecimals is obtuse, but this lets
@@ -27,7 +27,7 @@ class Test_RentalCalculator {
 	
 	@Test
 	void Test_Discount_OneDay() {
-		RentalPriceCalculator rp = RentalPriceCalculator.calculate(
+		RentalPriceInfo rp = RentalPriceInfo.calculate(
 				new BigDecimal("5.00"), new BigDecimal("0.50"), 1);
 		
 
@@ -40,7 +40,7 @@ class Test_RentalCalculator {
 	
 	@Test
 	void Test_NoDiscount_ManyDays() {
-		RentalPriceCalculator rp = RentalPriceCalculator.calculate(
+		RentalPriceInfo rp = RentalPriceInfo.calculate(
 				new BigDecimal("2.00"), new BigDecimal("0.00"), 5);
 		
 
@@ -53,7 +53,7 @@ class Test_RentalCalculator {
 	
 	@Test
 	void Test_Discount_ManyDays() {
-		RentalPriceCalculator rp = RentalPriceCalculator.calculate(
+		RentalPriceInfo rp = RentalPriceInfo.calculate(
 				new BigDecimal("2.00"), new BigDecimal("0.20"), 5);
 	
 
@@ -67,7 +67,7 @@ class Test_RentalCalculator {
 	
 	@Test
 	void Test_FullDiscount() {
-		RentalPriceCalculator rp = RentalPriceCalculator.calculate(
+		RentalPriceInfo rp = RentalPriceInfo.calculate(
 				new BigDecimal("2.00"), new BigDecimal("1.00"), 5);
 	
 
@@ -82,7 +82,7 @@ class Test_RentalCalculator {
 	
 	@Test
 	void Test_Rounding1() {
-		RentalPriceCalculator rp = RentalPriceCalculator.calculate(
+		RentalPriceInfo rp = RentalPriceInfo.calculate(
 				new BigDecimal("2.249"), new BigDecimal("0.231"), 5);
 	
 
@@ -95,7 +95,7 @@ class Test_RentalCalculator {
 	
 	@Test
 	void Test_Rounding2() {
-		RentalPriceCalculator rp = RentalPriceCalculator.calculate(
+		RentalPriceInfo rp = RentalPriceInfo.calculate(
 				new BigDecimal("12.77"), new BigDecimal("0.599"), 1);
 	
 

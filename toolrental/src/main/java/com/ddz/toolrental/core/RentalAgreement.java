@@ -7,6 +7,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
 
+/**
+ * Represents a rental agreement to be presented to a customer.
+ * Holds information about the tool being rented, checkout date,
+ * due date, rental price, and any applicable discounts.
+ * 
+ * @author Dante Zitello
+ *
+ */
 public class RentalAgreement {
 	
 	
@@ -22,47 +30,102 @@ public class RentalAgreement {
 	private BigDecimal discountAmount;
 	private BigDecimal total;
 	
+	/**
+	 * Get the tool in this RentalAgreement
+	 * 
+	 * @return tool
+	 */
 	public Tool getTool() {
 		return tool;
 	}
 	
+	/**
+	 * Get the total number of days that the tool
+	 * is being rented for.
+	 * @return total rental days
+	 */
 	public int getRentalDays() {
 		return rentalDays;
 	}
 	
+	/**
+	 * Get the checkout date for this RentalAgreement.
+	 * @return checkout date
+	 */
 	public LocalDate getCheckoutDate() {
 		return checkDate;
 	}
 	
+	/**
+	 * Get the indicated due date for this
+	 * RentalAgreement.
+	 * @return due date
+	 */
 	public LocalDate getDueDate() {
 		return dueDate;
 	}
 	
+	/**
+	 * Get total number of days that are actually
+	 * being charged for. This will be different
+	 * from <code>getRentalDays()</code> depending on 
+	 * the tool's charging rules. 
+	 * @return total charge days
+	 */
 	public int getChargeDays() {
 		return chargeDays;
 	}
 	
+	/**
+	 * Get the daily charge for the tool
+	 * @return daily rental charge, formatted as 
+	 * decimal with 2 significant figures
+	 */
 	public BigDecimal getDailyCharge() {
 		return dailyCharge;
 	}
 	
+	/**
+	 * Get the pre-discount price. This is equivalent to
+	 * <code>chargeDays * dailyCharge</code>.
+	 * @return pre-discount price
+	 */
 	public BigDecimal getPreDiscount() {
 		return preDiscount;
 	}
 	
+	/**
+	 * Get the discount percentage as a decimal in the range
+	 * 0.00 to 1.00
+	 * @return discount percentage
+	 */
 	public BigDecimal getDiscountPercent() {
 		return discountPercent;
 	}
 	
+	/**
+	 * Get the discount amount. This is equivalent to
+	 * <code>discountPercentage * preDiscount</code>.
+	 * @return discount amount
+	 */
 	public BigDecimal getDiscountAmount() {
 		return discountAmount;
 	}
 	
+	/**
+	 * Get the total price. This is equivalent to
+	 * <code> preDiscount - (discountPercentage * preDiscount)</code>.
+	 * @return sum total
+	 */
 	public BigDecimal getTotal() {
 		return total;
 	}
 	
-	
+	/**
+	 * Build a formatted string representing the RentalAgreement
+	 * as it would be presented to a clerk or customer.
+	 * @return formatted string
+	 */
 	public String buildAgreementString() {
 		//Format the dates
 		String fmtString = "MM/dd/yy";
@@ -100,10 +163,19 @@ public class RentalAgreement {
 		return sb.toString();
 	}
 	
-	
-	
-	
-	
+	/**
+	 * Factory method for creating a RentalAgreement.
+	 * 
+	 * @param tool  tool to be rented
+	 * @param discountPercentage  discount to be applied, in range 0.00 to 1.00
+	 * @param checkout  date of checkout
+	 * @param days  number of days in rental period
+	 * @return Rental agreement from provided data
+	 * 
+	 * @throws NullPointerException if tool, discountPercentage, or checkout are null.
+	 * @throws RuntimeException if discountPercentage is not in range 0.00 - 1.00, or 
+	 * days is not greater than 1.
+	 */
 	public static RentalAgreement createRentalAgreement(Tool tool, BigDecimal discountPercentage, LocalDate checkout, int days) {
 		
 		//Check if any of the provided arguments are null
@@ -130,7 +202,7 @@ public class RentalAgreement {
 		//Calculate the charge days. First day is EXCLUSIVE, last day is INCLUSIVE
 		LocalDate startExclusive = checkout.plusDays(1);
 		LocalDate endInclusive = startExclusive.plusDays(days);
-		WeekendHolidayCalculator hl = WeekendHolidayCalculator.create(startExclusive, endInclusive);
+		WeekendHolidayInfo hl = WeekendHolidayInfo.calculateFromRange(startExclusive, endInclusive);
 		
 		int chargeDays = calculateChargeDays(hl.getBetweenWeekdays(),
 									hl.getBetweenWeekends(),
@@ -140,7 +212,7 @@ public class RentalAgreement {
 									tt.isHolidayCharge() );
 		
 		//Calculate rental price
-		RentalPriceCalculator rpc = RentalPriceCalculator.calculate(tt.getRentalPrice(), discountPercentage, chargeDays);
+		RentalPriceInfo rpc = RentalPriceInfo.calculate(tt.getRentalPrice(), discountPercentage, chargeDays);
 		
 		
 		//Fill out relevant information into agreement
@@ -162,6 +234,16 @@ public class RentalAgreement {
 		return ra;
 	}
 	
+	/**
+	 * Calculate charge days
+	 * @param weekdays  number of weekdays in range
+	 * @param weekends  number of weekends in range
+	 * @param holidays  number of holidays in range
+	 * @param dayCharge  whether or not there is a weekday charge
+	 * @param weCharge  whether or not there is a weekend charge
+	 * @param holCharge  whether or not there is a holiday charge
+	 * @return total number of charge days
+	 */
 	private static int calculateChargeDays(long weekdays, long weekends, long holidays, boolean dayCharge, boolean weCharge, boolean holCharge) {
 		int chargedays = 0;
 		

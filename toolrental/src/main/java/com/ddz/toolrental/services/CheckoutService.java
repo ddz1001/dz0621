@@ -9,15 +9,24 @@ import com.ddz.toolrental.core.RentalAgreement;
 import com.ddz.toolrental.core.Tool;
 import com.ddz.toolrental.repositories.ToolRepository;
 
+/**
+ * Checkout service. Generates RentalAgreements for given tools.
+ * @author Dante Zitello
+ *
+ */
 public class CheckoutService {
 	
 	private ToolRepository repo;
 	private static CheckoutService checkout;
 	
-	CheckoutService() {
+	private CheckoutService() {
 		repo = ToolRepository.getRepository();
 	}
 	
+	/**
+	 * Access CheckoutService's singleton
+	 * @return checkout service
+	 */
 	public static CheckoutService getCheckoutService() {
 		if(checkout == null) {
 			checkout = new CheckoutService();
@@ -26,10 +35,21 @@ public class CheckoutService {
 		return checkout;
 	}
 	
-	
-	public RentalAgreement checkoutTool(String toolCode, int rentalDayCount, int discountPercent, LocalDate start) {
+	/**
+	 * Create a RentalAgreement for a given tool, represented by its unique toolCode. 
+	 * 
+	 * @param toolCode  tool's code
+	 * @param discountPercent  discount percentage in range of 0 - 100
+	 * @param checkoutDate  checkout date for tool
+	 * @param rentalDayCount  number of days to rent
+	 * @return RentalAgreement containing rental information
+	 * 
+	 * @throws NullPointerException if toolCode or checkoutDate are null.
+	 * @throws RuntimeException if discountPercent is not in range 0 - 100 or rentalDayCount not equal to or greater than 1.
+	 */
+	public RentalAgreement checkoutTool(String toolCode, int discountPercent, LocalDate checkoutDate, int rentalDayCount) {
 		
-		if(toolCode == null || start == null) {
+		if(toolCode == null || checkoutDate == null) {
 			throw new NullPointerException();
 		}
 		
@@ -47,7 +67,7 @@ public class CheckoutService {
 		
 		BigDecimal discountDec = new BigDecimal(discountPercent).divide(new BigDecimal(100));
 		
-		return RentalAgreement.createRentalAgreement(tool, discountDec, start, rentalDayCount);
+		return RentalAgreement.createRentalAgreement(tool, discountDec, checkoutDate, rentalDayCount);
 	}
 	
 }

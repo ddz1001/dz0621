@@ -1,4 +1,4 @@
-package test.com.ddz.toolrental.core.WeekendHolidayCalculator;
+package test.com.ddz.toolrental.core.WeekendHolidayInfo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import com.ddz.toolrental.core.WeekendHolidayCalculator;
+import com.ddz.toolrental.core.WeekendHolidayInfo;
 
 class Test_DateRange_Weekends {
 	
@@ -14,8 +14,8 @@ class Test_DateRange_Weekends {
 	
 	@Test
 	void Test_LessThan7DaysMidweekStartEnd() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-06-03"),
 						LocalDate.parse("2021-06-07"));
 		
@@ -31,8 +31,8 @@ class Test_DateRange_Weekends {
 	
 	@Test
 	void Test_LessThan7DaysMidweekStartSatEnd() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-06-04"),
 						LocalDate.parse("2021-06-05"));
 		
@@ -45,8 +45,8 @@ class Test_DateRange_Weekends {
 	
 	@Test
 	void Test_LessThan7DaysMidweekStartSunEnd() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-06-04"),
 						LocalDate.parse("2021-06-06"));
 		
@@ -59,8 +59,8 @@ class Test_DateRange_Weekends {
 	
 	@Test
 	void Test_LessThan7DaysSatStartMidweekEnd() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-06-12"),
 						LocalDate.parse("2021-06-14"));
 		
@@ -74,8 +74,8 @@ class Test_DateRange_Weekends {
 	
 	@Test
 	void Test_LessThan7DaysSunStartMidweekEnd() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-06-13"),
 						LocalDate.parse("2021-06-14"));
 		
@@ -89,8 +89,8 @@ class Test_DateRange_Weekends {
 	
 	@Test
 	void Test_LessThan7NoWeekends() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-06-14"),
 						LocalDate.parse("2021-06-17"));
 		
@@ -107,8 +107,8 @@ class Test_DateRange_Weekends {
 	
 	@Test
 	void Test_MoreThan7DaysMidweekStartEnd() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-06-04"),
 						LocalDate.parse("2021-06-21"));
 		
@@ -123,8 +123,8 @@ class Test_DateRange_Weekends {
 	
 	@Test
 	void Test_MoreThan7DaysMidweekStartSatEnd() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-06-04"),
 						LocalDate.parse("2021-06-26"));
 		
@@ -137,8 +137,8 @@ class Test_DateRange_Weekends {
 	
 	@Test
 	void Test_MoreThan7DaysMidweekStartSunEnd() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-06-04"),
 						LocalDate.parse("2021-06-27"));
 		
@@ -151,8 +151,8 @@ class Test_DateRange_Weekends {
 	
 	@Test
 	void Test_MoreThan7DaysSatStartMidweekEnd() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-06-05"),
 						LocalDate.parse("2021-06-21"));
 		
@@ -166,8 +166,8 @@ class Test_DateRange_Weekends {
 	
 	@Test
 	void Test_MoreThan7DaysSunStartMidweekEnd() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-06-06"),
 						LocalDate.parse("2021-06-21"));
 		
@@ -181,8 +181,8 @@ class Test_DateRange_Weekends {
 	
 	@Test
 	void Test_SameStartEnd() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-06-02"),
 						LocalDate.parse("2021-06-30"));
 		

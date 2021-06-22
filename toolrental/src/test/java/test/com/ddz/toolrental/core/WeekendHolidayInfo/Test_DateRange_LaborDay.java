@@ -1,4 +1,4 @@
-package test.com.ddz.toolrental.core.WeekendHolidayCalculator;
+package test.com.ddz.toolrental.core.WeekendHolidayInfo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import com.ddz.toolrental.core.WeekendHolidayCalculator;
+import com.ddz.toolrental.core.WeekendHolidayInfo;
 
 class Test_DateRange_LaborDay {
 
@@ -14,8 +14,8 @@ class Test_DateRange_LaborDay {
 	//////////////////////////////////////////////Same year
 	@Test
 	void Test_StartBeforeLaborDayEndAfter_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-01"),
 						LocalDate.parse("2021-09-07"));
 		
@@ -25,8 +25,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartOnLaborDayEndAfter_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-06"),
 						LocalDate.parse("2021-09-07"));
 		
@@ -36,8 +36,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartBeforeLaborDayEndOn_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-01"),
 						LocalDate.parse("2021-09-06"));
 		
@@ -47,8 +47,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartBeforeLaborDayEndBefore_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-01"),
 						LocalDate.parse("2021-09-03"));
 		
@@ -58,8 +58,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartAfterLaborDayEndAfter_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-08"),
 						LocalDate.parse("2021-10-15"));
 		
@@ -72,8 +72,8 @@ class Test_DateRange_LaborDay {
 	////////////////////////////////////////////One year apart
 	@Test
 	void Test_StartBeforeLaborDayEndAfter_OneYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-01"),
 						LocalDate.parse("2022-09-07"));
 		
@@ -83,8 +83,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartOnLaborDayEndAfter_OneYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-06"),
 						LocalDate.parse("2022-09-07"));
 		
@@ -94,8 +94,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartBeforeLaborDayEndBefore_OneYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-01"),
 						LocalDate.parse("2022-09-03"));
 		
@@ -105,8 +105,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartBeforeLaborDayEndOn_OneYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-01"),
 						LocalDate.parse("2022-09-05"));
 		
@@ -116,8 +116,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartAfterLaborDayEndAfter_OneYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-08"),
 						LocalDate.parse("2022-10-15"));
 		
@@ -127,8 +127,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartAfterLaborDayEndBefore_OneYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-08"),
 						LocalDate.parse("2022-09-01"));
 		
@@ -143,8 +143,8 @@ class Test_DateRange_LaborDay {
 	////////////////////////////////////////////Many years apart
 	@Test
 	void Test_StartBeforeLaborDayEndAfter_NYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-01"),
 						LocalDate.parse("2023-09-07"));
 		
@@ -154,8 +154,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartOnLaborDayEndAfter_NYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-06"),
 						LocalDate.parse("2023-09-07"));
 		
@@ -165,8 +165,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartBeforeLaborDayEndBefore_NYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-01"),
 						LocalDate.parse("2023-09-03"));
 		
@@ -176,8 +176,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartBeforeLaborDayEndOn_NYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-01"),
 						LocalDate.parse("2023-09-04"));
 		
@@ -187,8 +187,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartAfterLaborDayEndAfter_NYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-08"),
 						LocalDate.parse("2023-09-05"));
 		
@@ -198,8 +198,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_StartAfterLaborDayEndBefore_NYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-09-08"),
 						LocalDate.parse("2023-09-02"));
 		
@@ -212,8 +212,8 @@ class Test_DateRange_LaborDay {
 	
 	@Test
 	void Test_100Years() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("1900-09-03"),
 						LocalDate.parse("2000-09-05"));
 		

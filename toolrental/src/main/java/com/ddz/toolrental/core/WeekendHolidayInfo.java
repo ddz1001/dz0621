@@ -7,7 +7,26 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
-public class WeekendHolidayCalculator {
+/**
+ * This class holds information about the individual days between any given date range.
+ * This includes weekdays, weekends, and holidays. Different holidays have different observation rules. 
+ * Below are the observance rules for the implemented holidays:
+ * <table>
+ * <tr>
+ * <td><b>Holiday</b></td>
+ * <td><b>Rule</b></td>
+ * </tr>
+ * <tr>
+ * <td>Independence Day</td><td>Observed on July 4th if it falls on a weekday. Observed on the closest weekday if 4th is on a weekend.</td>
+ * </tr>
+ * <tr>
+ * <td>Labor Day</td><td>Observed on the first Monday of September</td>
+ * </tr>
+ * </table>
+ * @author Dante Zitello
+ *
+ */
+public class WeekendHolidayInfo {
 
 	LocalDate start;
 	LocalDate end;
@@ -20,7 +39,7 @@ public class WeekendHolidayCalculator {
 	long laborDays;
 	long july4ths;
 	
-	private WeekendHolidayCalculator(LocalDate start, LocalDate end) {
+	private WeekendHolidayInfo(LocalDate start, LocalDate end) {
 		this.start = LocalDate.from(start);
 		this.end = LocalDate.from(end);
 		
@@ -31,13 +50,66 @@ public class WeekendHolidayCalculator {
 		this.july4ths = 0;
 	}
 	
+	/**
+	 * Get total number of weekend days between the range
+	 * @return total weekends
+	 */
+	public long getBetweenWeekends() {
+		return this.weekends;
+	}
 	
-
+	/**
+	 * Get the total number of observed holidays between the range
+	 * @return total observed holidays
+	 */
+	public long getBetweenHolidays() {
+		return this.laborDays + this.july4ths;
+	}
+	
+	/**
+	 * Get the total number of Labor Days between the range
+	 * @return Labor Days
+	 */
+	public long getBetweenLaborDays() {
+		return this.laborDays;
+	}
+	
+	/**
+	 * Get the total number of July 4ths between the range
+	 * @return July 4ths
+	 */
+	public long getBetweenJuly4ths() {
+		return this.july4ths;
+	}
+	
+	/**
+	 * Get the total number of weekdays between the range
+	 * @return total weekdays
+	 */
+	public long getBetweenWeekdays() {
+		return this.weekdays;
+	}
+	
+	/**
+	 * Get the total number of days in the range
+	 * @return total days
+	 */
+	public long getTotalDays() {
+		return totaldays;
+	}
 	
 	
-	static public WeekendHolidayCalculator create(LocalDate startInclusive, LocalDate endExclusive) {
+	
+	/**
+	 * Factory method for weekend and holiday information. Get total number of weekdays, weekends and
+	 * observed holidays between the range.
+	 * @param startInclusive  inclusive start date
+	 * @param endExclusive  exclusive end date
+	 * @return
+	 */
+	static public WeekendHolidayInfo calculateFromRange(LocalDate startInclusive, LocalDate endExclusive) {
 		
-		WeekendHolidayCalculator dt = new WeekendHolidayCalculator(startInclusive, endExclusive);
+		WeekendHolidayInfo dt = new WeekendHolidayInfo(startInclusive, endExclusive);
 		dt.computeTotalDays();
 		dt.computeWeekends();
 		dt.computeHolidays();
@@ -46,11 +118,16 @@ public class WeekendHolidayCalculator {
 		return dt;
 		
 	}
-	
+	/**
+	 * Compute total days
+	 */
 	private void computeTotalDays() {
 		this.totaldays = ChronoUnit.DAYS.between(start, end);
 	}
 	
+	/**
+	 * Compute weekdays
+	 */
 	private void computeWeekdays() {
 	    long days = this.totaldays;
 	    
@@ -60,6 +137,9 @@ public class WeekendHolidayCalculator {
 	    this.weekdays = days;
 	}
 	
+	/**
+	 * Compute weekends
+	 */
 	private void computeWeekends() {
 		int startW = start.getDayOfWeek().getValue();
 	    int endW = end.getDayOfWeek().getValue();
@@ -112,7 +192,9 @@ public class WeekendHolidayCalculator {
 	    this.weekends = result;
 	}
 	
-	
+	/**
+	 * Compute observed holidays
+	 */
 	private void computeHolidays() {
 		
 		//Check number of Labor Days in range
@@ -178,7 +260,11 @@ public class WeekendHolidayCalculator {
 		this.holidays = this.july4ths + this.laborDays;
 	}
 	
-	
+	/**
+	 * Get the date of Labor Day for a given year
+	 * @param year
+	 * @return
+	 */
 	private LocalDate getLaborDayDate(int year) {
 		
 		LocalDate ld = LocalDate.of(year, 
@@ -191,6 +277,11 @@ public class WeekendHolidayCalculator {
 		
 	}
 	
+	/**
+	 * Get the observed July 4th date
+	 * @param year
+	 * @return
+	 */
 	private LocalDate getObservedJuly4thDate(int year) {
 		LocalDate ld = LocalDate.of(year, Month.JULY, 4);
 		
@@ -207,30 +298,7 @@ public class WeekendHolidayCalculator {
 		                                             
 	}
 	
-	public long getBetweenWeekends() {
-		return this.weekends;
-	}
 	
-	
-	public long getBetweenHolidays() {
-		return this.laborDays + this.july4ths;
-	}
-	
-	public long getBetweenLaborDays() {
-		return this.laborDays;
-	}
-	
-	public long getBetweenJuly4ths() {
-		return this.july4ths;
-	}
-	
-	public long getBetweenWeekdays() {
-		return this.weekdays;
-	}
-	
-	public long getTotalDays() {
-		return totaldays;
-	}
 	
 	
 	

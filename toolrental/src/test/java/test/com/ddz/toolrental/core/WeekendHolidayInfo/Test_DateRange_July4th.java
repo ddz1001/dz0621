@@ -1,4 +1,4 @@
-package test.com.ddz.toolrental.core.WeekendHolidayCalculator;
+package test.com.ddz.toolrental.core.WeekendHolidayInfo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import com.ddz.toolrental.core.WeekendHolidayCalculator;
+import com.ddz.toolrental.core.WeekendHolidayInfo;
 
 class Test_DateRange_July4th {
 
@@ -15,8 +15,8 @@ class Test_DateRange_July4th {
 	///////////////////Observed on Monday
 	@Test
 	void Test_StartSundayEndAfter_Monday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-07-03"),
 						LocalDate.parse("2021-07-22"));
 		
@@ -25,8 +25,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndAfter_Monday_SameYear() {
-	WeekendHolidayCalculator drc = 
-		WeekendHolidayCalculator.create( 
+	WeekendHolidayInfo drc = 
+		WeekendHolidayInfo.calculateFromRange( 
 				LocalDate.parse("2021-07-01"),
 				LocalDate.parse("2021-07-22"));
 	
@@ -35,8 +35,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartMondayEndAfter_Monday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-07-05"),
 						LocalDate.parse("2021-07-22"));
 		
@@ -45,8 +45,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndSunday_Monday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-07-01"),
 						LocalDate.parse("2021-07-04"));
 		
@@ -55,8 +55,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndMonday_Monday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-07-01"),
 						LocalDate.parse("2021-07-05"));
 		
@@ -65,8 +65,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndTuesday_Monday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-07-01"),
 						LocalDate.parse("2021-07-06"));
 		
@@ -75,8 +75,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndBefore_Monday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-07-01"),
 						LocalDate.parse("2021-07-03"));
 		
@@ -85,8 +85,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartAfterEndAfterMonday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2021-07-06"),
 						LocalDate.parse("2021-07-09"));
 		
@@ -101,8 +101,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartFridayEndAfter_Friday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2020-07-03"),
 						LocalDate.parse("2020-07-22"));
 		
@@ -111,8 +111,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartSaturdayEndAfter_Friday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2020-07-04"),
 						LocalDate.parse("2020-07-22"));
 		
@@ -121,8 +121,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndAfter_Friday_SameYear() {
-	WeekendHolidayCalculator drc = 
-		WeekendHolidayCalculator.create( 
+	WeekendHolidayInfo drc = 
+		WeekendHolidayInfo.calculateFromRange( 
 				LocalDate.parse("2020-07-01"),
 				LocalDate.parse("2020-07-22"));
 	
@@ -131,8 +131,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartThursdayEndAfter_Friday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2020-07-02"),
 						LocalDate.parse("2020-07-22"));
 		
@@ -141,8 +141,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndFriday_Friday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2020-07-01"),
 						LocalDate.parse("2020-07-03"));
 		
@@ -151,8 +151,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndSaturday_Friday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2020-07-01"),
 						LocalDate.parse("2020-07-04"));
 		
@@ -161,8 +161,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndBefore_Friday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2020-06-19"),
 						LocalDate.parse("2020-07-02"));
 		
@@ -171,8 +171,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartAfterEndAfterFriday_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2020-07-05"),
 						LocalDate.parse("2020-07-09"));
 		
@@ -186,8 +186,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartOnEndAfter_SameDay_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2019-07-04"),
 						LocalDate.parse("2019-07-22"));
 		
@@ -196,8 +196,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndAfter_SameDay_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2019-07-03"),
 						LocalDate.parse("2019-07-22"));
 		
@@ -206,8 +206,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndOn_SameDay_SameYear() {
-	WeekendHolidayCalculator drc = 
-		WeekendHolidayCalculator.create( 
+	WeekendHolidayInfo drc = 
+		WeekendHolidayInfo.calculateFromRange( 
 				LocalDate.parse("2019-07-01"),
 				LocalDate.parse("2019-07-04"));
 	
@@ -216,8 +216,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndBefore_SameDay_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2019-07-01"),
 						LocalDate.parse("2019-07-03"));
 		
@@ -226,8 +226,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartAfterEndAfter_SameDay_SameYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2019-07-05"),
 						LocalDate.parse("2019-07-09"));
 		
@@ -242,8 +242,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndAfter_OneYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2019-07-01"),
 						LocalDate.parse("2020-07-09"));
 		
@@ -252,8 +252,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartAfterEndAfter_OneYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2019-07-05"),
 						LocalDate.parse("2020-07-09"));
 		
@@ -263,8 +263,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndBefore_OneYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2019-07-01"),
 						LocalDate.parse("2020-07-01"));
 		
@@ -273,8 +273,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartAfterEndBefore_OneYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2019-07-07"),
 						LocalDate.parse("2020-07-01"));
 		
@@ -286,8 +286,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndAfter_NYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2018-07-01"),
 						LocalDate.parse("2020-07-09"));
 		
@@ -296,8 +296,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartAfterEndAfter_NYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2018-07-05"),
 						LocalDate.parse("2020-07-09"));
 		
@@ -307,8 +307,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartBeforeEndBefore_NYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2018-07-01"),
 						LocalDate.parse("2020-07-01"));
 		
@@ -317,8 +317,8 @@ class Test_DateRange_July4th {
 	
 	@Test
 	void Test_StartAfterEndBefore_NYear() {
-		WeekendHolidayCalculator drc = 
-				WeekendHolidayCalculator.create( 
+		WeekendHolidayInfo drc = 
+				WeekendHolidayInfo.calculateFromRange( 
 						LocalDate.parse("2018-07-07"),
 						LocalDate.parse("2020-07-01"));
 		
